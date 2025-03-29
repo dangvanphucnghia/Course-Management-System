@@ -1,10 +1,10 @@
 baner.txt
-**1. Prerequisite**
+## 1. Prerequisite
 Cài đặt JDK 17+ nếu chưa thì cài đặt JDK
 Install Maven 3.5+ nếu chưa thì cài đặt Maven
 Install IntelliJ nếu chưa thì cài đặt IntelliJ
 Install Docker nếu chưa thì cài đặt Docker
-**2. Technical Stacks**
+## 2. Technical Stacks**
 Java 17
 Maven 3.5+
 Spring Boot 3.3.4
