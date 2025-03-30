@@ -1,4 +1,4 @@
-package vn.phucnghia.Course.Management.System.controller.response;
+package vn.phucnghia.Course.Management.System.controller.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class UserResponse implements Serializable {
+public class UserCreationRequest implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;

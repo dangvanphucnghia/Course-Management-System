@@ -3,10 +3,10 @@ package vn.phucnghia.Course.Management.System.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import vn.phucnghia.Course.Management.System.controller.request.UserChangPasswordRequest;
+import vn.phucnghia.Course.Management.System.controller.request.UserCreationRequest;
+import vn.phucnghia.Course.Management.System.controller.request.UserUpdateRequest;
 import vn.phucnghia.Course.Management.System.controller.response.UserResponse;
 
 import java.util.*;
@@ -15,7 +15,7 @@ import java.util.*;
 @RequestMapping("/user")
 @Tag(name=" User Controller")
 public class UserController {
-    @Operation(summary = "Test API", description = "Mo ta chi tiet")
+    @Operation(summary = "Get user list", description = "API retrieve user from db")
     @GetMapping("/list")
     public Map<String, Object> getList(@RequestParam(required = false) String keywword,
                                       @RequestParam(defaultValue = "0") int page,
@@ -45,11 +45,82 @@ public class UserController {
 
         List<UserResponse> userlink = List.of(userResponse1, userResponse2);
 
-        Map<String, Object> resulf = new LinkedHashMap<>();
-        resulf.put("status", HttpStatus.OK.value());
-        resulf.put("message", "User Link");
-        resulf.put("date",userlink);
-        return resulf;
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("status", HttpStatus.OK.value());
+        result.put("message", "User Link");
+        result.put("data",userlink);
+        return result;
 
+    }
+
+    @Operation(summary = "Get user detail", description = "API retrieve user by userId")
+    @GetMapping("/{userId}")
+    public Map<String, Object> getUserDetail(@PathVariable Long userId){
+        
+        UserResponse userResponse1 = new UserResponse();
+        userResponse1.setId(userId);
+        userResponse1.setFirstName("admin1");
+        userResponse1.setLastName("system1");
+        userResponse1.setUsername("admin1");
+        userResponse1.setGender("gender1");
+        userResponse1.setBirthday(new Date());
+        userResponse1.setPhone("0368285760");
+        userResponse1.setEmail("admin1@gmail.com");
+
+        List<UserResponse> userlink = List.of(userResponse1);
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("status", HttpStatus.OK.value());
+        result.put("message", "User Detail Id");
+        result.put("data",userlink);
+        return result;
+    }
+
+    @Operation(summary="Created User", description = "API add new User to do")
+    @PostMapping("/add")
+    public Map<String, Object> CreatedUser(UserCreationRequest request){
+        Map<String, Object> result = new LinkedHashMap<>();
+
+        result.put("status", HttpStatus.CREATED.value());
+        result.put("message", "Created User Successfully!!!");
+        result.put("data", 3);
+
+        return result;
+    }
+
+    @Operation(summary = "Update User", description = "API update User")
+    @PutMapping("/update")
+    public Map<String, Object> updateUser(@RequestBody UserUpdateRequest request){
+        Map<String, Object> result = new LinkedHashMap<>();
+
+        result.put("status", HttpStatus.ACCEPTED.value());
+        result.put("message", "Update user successfully!!!");
+        result.put("data", "");
+
+        return result;
+    }
+
+    @Operation(summary = "Chang Password User", description = "API Chang Password User")
+    @PatchMapping("/changpasswod")
+    public Map<String, Object> changPasswordUser(UserChangPasswordRequest request){
+        Map<String, Object> result = new LinkedHashMap<>();
+
+        result.put("status", HttpStatus.NO_CONTENT.value());
+        result.put("message", "Update password successfully!!!");
+        result.put("data", "");
+
+        return result;
+    }
+
+    @Operation(summary = "Disable User", description = "API delete User")
+    @DeleteMapping("/delete/{userId}")
+    public Map<String, Object> deleteUser(@PathVariable Long userId){
+        Map<String, Object> result = new LinkedHashMap<>();
+
+        result.put("status", HttpStatus.RESET_CONTENT.value());
+        result.put("message", "Delete user successfully!!!");
+        result.put("data", "");
+
+        return result;
     }
 }
