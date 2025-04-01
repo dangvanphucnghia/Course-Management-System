@@ -1,4 +1,5 @@
 ## 1 ADD dependency
+```bash
     <!-- JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -10,7 +11,9 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+```
 ## 2 ADD application-dev.yaml
+```bash
   datasource:
     url: jdbc:mysql://localhost:3306/course-management-system?useSSL=false&serverTimezone=UTC
     username: root
@@ -25,8 +28,10 @@
     properties:
       hibernate:
         format_sql: true
+```
 ## 3 ADD UserResponse & UserController
   ## UserResponse
+```bash
 package vn.phucnghia.Course.Management.System.controller.response;
 
 import lombok.Getter;
@@ -46,8 +51,10 @@ public class UserResponse {
     private String phone;
     private String email;
 }
+```
 ==================================================================
   ## UserController
+```bash
 package vn.phucnghia.Course.Management.System.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -103,6 +110,7 @@ public class UserController {
 
     }
 }
+```
 ## Test API với Swagger hoặc Postman
   ## Swagger
 ![image](https://github.com/user-attachments/assets/6cd51149-45b6-49bb-8426-c99735f61cd5)
