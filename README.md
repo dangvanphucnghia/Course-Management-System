@@ -16,23 +16,30 @@ DevTools <br>
 Docker <br>
 Docker compose <br>
 … <br>
-## 3. Build & Run Application
-– Run application bởi mvnw tại folder Course-Management-System <br>
+## Build application
+```bash
+mvn clean package -P dev|test|uat|prod
+```
 
-$ ./mvnw spring-boot:run <br>
-– Run application bởi docker <br>
+## Run application
+- Maven statement
+```bash
+./mvnw spring-boot:run
+```
+- Jar statement
+```bash
+java -jar target/Course-Management-System.jar
+```
 
-$ mvn clean install -P dev <br>
-$ docker build -t Course-Management-System:latest <br>
-$ docker run -it -p 8081:8081 --name Course-Management-System Course-Management-System:latest <br>
-## 4. Test
-– Check health với cURL <br>
+- Docker
+```bash
+docker build -t Course-Management-System .
+docker run -d Course-Management-System:latest Course-Management-System
+```
 
-curl --location 'http://localhost:8081/actuator/health' <br>
-
--- Response -- <br>
-{ <br>
-    "status": "UP" <br>
-} <br>
+## Package application
+```bash
+docker build -t Course-Management-System .
+```
 ## Truy cập Backend service để test các API
 ![image](https://github.com/user-attachments/assets/b0f33b0c-bb3d-4503-b416-665fddb56385)
