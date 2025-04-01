@@ -2,26 +2,22 @@ package vn.phucnghia.Course.Management.System.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.phucnghia.Course.Management.System.controller.request.UserChangPasswordRequest;
 import vn.phucnghia.Course.Management.System.controller.request.UserCreationRequest;
 import vn.phucnghia.Course.Management.System.controller.request.UserUpdateRequest;
 import vn.phucnghia.Course.Management.System.controller.response.UserResponse;
-import vn.phucnghia.Course.Management.System.service.UserService;
 
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/user")
-@Tag(name=" User Controller")
-@RequiredArgsConstructor
-public class UserController {
-
-    private final UserService userService;
-
+@RequestMapping("mockup/user")
+@Tag(name="Mockup User Controller")
+public class MockupUserController {
     @Operation(summary = "Get user list", description = "API retrieve user from db")
     @GetMapping("/list")
     public Map<String, Object> getList(@RequestParam(required = false) String keywword,
@@ -85,14 +81,14 @@ public class UserController {
 
     @Operation(summary="Created User", description = "API add new User to do")
     @PostMapping("/add")
-    public ResponseEntity<Object> createdUser(@RequestBody UserCreationRequest request){
+    public Map<String, Object> CreatedUser(UserCreationRequest request){
         Map<String, Object> result = new LinkedHashMap<>();
 
-        result.put("status", HttpStatus.ACCEPTED.value());
-        result.put("message", "Update user successfully!!!");
-        result.put("data", userService.save(request));
+        result.put("status", HttpStatus.CREATED.value());
+        result.put("message", "Created User Successfully!!!");
+        result.put("data", 3);
 
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+        return result;
     }
 
     @Operation(summary = "Update User", description = "API update User")
@@ -109,7 +105,7 @@ public class UserController {
 
     @Operation(summary = "Chang Password User", description = "API Chang Password User")
     @PatchMapping("/changpasswod")
-    public Map<String, Object> changPasswordUser(@RequestBody UserChangPasswordRequest request){
+    public Map<String, Object> changPasswordUser(UserChangPasswordRequest request){
         Map<String, Object> result = new LinkedHashMap<>();
 
         result.put("status", HttpStatus.NO_CONTENT.value());
