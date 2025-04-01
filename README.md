@@ -52,7 +52,6 @@ public class UserResponse {
     private String email;
 }
 ```
-==================================================================
   ## UserController
 ```bash
 package vn.phucnghia.Course.Management.System.controller;
